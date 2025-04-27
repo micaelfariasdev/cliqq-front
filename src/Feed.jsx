@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import { FaPlus } from "react-icons/fa";
 import Header from './components/Header.jsx'
 import Main from './components/Main.jsx';
 
-function App() {
+function Feed() {
   return (
     <>
     <Header />
@@ -12,4 +10,4 @@ function App() {
   )
 }
 
-export default App
+export default Feed
