@@ -6,6 +6,7 @@ import Login from './Login.jsx'
 import Logout from './Login.jsx'
 import Perfil from './Perfil.jsx'
 import PhotoDetail from './PhotoDetail.jsx'
+import NewPost from './NewPost.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/:username/photo/:photoId",
     element: <PhotoDetail />,
+  },
+  {
+    path: "/newpost",
+    element: <NewPost />,
   },
 ]);
 

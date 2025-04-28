@@ -7,6 +7,7 @@ function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     if (localStorage.getItem('auth_token')) {
         window.location.href = '/'
@@ -15,7 +16,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/auth/login', {
+            const response = await axios.post(`${apiUrl}api/auth/login/`, {
                 username,
                 password
             })
@@ -31,9 +32,9 @@ function Login() {
     return (
         <>
             <Header />
-            <div className='flex flex-row justify-center items-center w-screen h-screen'>
+            <div className='flex flex-row justify-center items-center h-screen'>
                 <div className='flex flex-col pt-50 bg-gray-200 p-10 shadow-lg h-full w-full'>
-                    <h1 className='text-6xl font-bold'>Dê Cliqq e compartilhe história</h1>
+                    <h1 className='text-6xl font-bold'>Dê um Cliqq e compartilhe história</h1>
 
                 </div>
                 <div className='flex flex-col pt-50 bg-white p-10 shadow-lg h-full w-full'>

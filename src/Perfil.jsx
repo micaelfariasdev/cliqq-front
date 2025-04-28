@@ -13,11 +13,12 @@ function Perfil() {
     const [showDetail, setShowDetail] = useState(false);
     const [photoId, setPhotoId] = useState(null);
     const [username, setUsername] = useState(null);
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/auth/me', {
+                const response = await axios.get(`${apiUrl}api/auth/${useParams().username}/`, {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Token ${localStorage.getItem('auth_token')}`
@@ -27,6 +28,7 @@ function Perfil() {
                 setAuthenticated(true);
             } catch (error) {
                 setAuthenticated(false);
+                console.error('Error fetching user data:', error);
             }
         };
 
@@ -46,13 +48,28 @@ function Perfil() {
         setShowDetail(true);
     };
 
-    if (userData) {
-        if (userData.username === useParams().username) {
+    useEffect(() => {
+        const handleClick = (e) => {
+            if (e.target.id === 'closephoto' || e.target.id === 'close') {
+                setShowDetail(false);
+            }
+        };
+    
+        document.addEventListener('click', handleClick);
+    
+        return () => {
+            document.removeEventListener('click', handleClick);
+        };
+    }, []);
+
+ 
+        if(userData){
+
             return (
                 <>
                     <Header />
                     <div className='flex flex-row justify-start items-start gap-5 pl-10 py-10 border-2 border-gray-200 bg-white'>
-                        <img src={`http://127.0.0.1:8000/${userData.perfil.photo_perfil}`} alt=""
+                        <img src={`${apiUrl}${userData.perfil.photo_perfil}`} alt=""
                             className='w-50 border-2 border-gray-500 rounded-2xl' />
                         <div className='flex flex-col items-start'>
                             <div className='flex flex-row gap-5'>
@@ -80,7 +97,7 @@ function Perfil() {
                                         key={item.id}
                                     >
                                         <div className='overflow-hidden rounded-lg'>
-                                            <img className="w-full aspect-square object-cover" src={`http://127.0.0.1:8000/${item.image}`} alt="Post Image" />
+                                            <img className="w-full aspect-square object-cover" src={`${apiUrl}${item.image}`} alt="Post Image" />
                                         </div>
                                         <div className='flex flex-row gap-2 content-start'>
                                             <MdVisibility className="relative translate-y-1" />
@@ -93,12 +110,11 @@ function Perfil() {
                         </div>
                     </div>
                     {showDetail && <PhotoDetail photoId={photoId} username={username} />}
-                    {console.log(photoId)}
-                    {console.log(username)}
                 </>
             );
         }
+    
     }
-}
+
 
 export default Perfil;
