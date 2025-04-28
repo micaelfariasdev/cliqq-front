@@ -14,13 +14,18 @@ function Main() {
         carregarItens()
     }, [])
 
+    
+
     return (
         <main className=" text-black p-4 border-2 border-gray-200 flex flex-row justify-between items-center bg-white">
             <div id="feed" className="flex flex-col gap-4 w-full justify-center items-center">
-                {itens.map((item) => (
+                {itens
+                .slice() 
+                .sort((a, b) => b.id - a.id)
+                .map((item) => (
                     <div className="flex flex-col gap-2 bg-gray-200 p-5 rounded-2xl w-full" id="post">
-                        <div className="post-header overflow-hidden rounded-lg h-fit w-full justify-center items-center flex">
-                            <img src={`http://localhost:8000/${item.image}`} alt="Post Image" class="post-image" />
+                        <div className="post-header overflow-hidden rounded-lg h-fit w-full justify-center items-center flex ">
+                            <img className="w-full h-full object-cover" src={`http://localhost:8000/${item.image}`} alt="Post Image"/>
                         </div>
                         <div className="flex flex-col gap-2">
                             <div>

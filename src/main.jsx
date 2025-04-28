@@ -4,6 +4,8 @@ import './index.css'
 import Feed from './Feed.jsx'
 import Login from './Login.jsx'
 import Logout from './Login.jsx'
+import Perfil from './Perfil.jsx'
+import PhotoDetail from './PhotoDetail.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -18,7 +20,15 @@ const router = createBrowserRouter([
   {
     path: "/logout",
     element: <Logout />,
-  }
+  },
+  {
+    path: "/:username",
+    element: <Perfil />,
+  },
+  {
+    path: "/:username/photo/:photoId",
+    element: <PhotoDetail />,
+  },
 ]);
 
 
