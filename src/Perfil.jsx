@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { MdVisibility } from "react-icons/md"
 import { TbClockHour3 } from "react-icons/tb"
 import PhotoDetail from './PhotoDetail.jsx'
+import { RiLoader3Fill } from "react-icons/ri";
 
 function Perfil() {
   const [userData, setUserData] = useState(null)
@@ -60,7 +61,12 @@ function Perfil() {
     setShowDetail(true)
   }
 
-  if (!userData) return null
+  if (!userData) {return (
+              <>
+                  <div className='fixed inset-0 bg-white opacity-80 z-0' />
+                  <RiLoader3Fill className='text-gray-500 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 animate-spin text-6xl' />
+              </>
+          );}
 
   const totalViews = userData.photos?.reduce((acc, photo) => acc + photo.views, 0) || 0
   const isOwner = myUsername === profileusername
@@ -69,7 +75,7 @@ function Perfil() {
     <>
       <Header />
       <div className='flex flex-row justify-start items-start gap-5 pl-10 py-10 border-2 border-gray-200 bg-white'>
-        <img src={`${apiUrl}${userData.perfil.photo_perfil}`} alt="" className='w-50 border-2 border-gray-500 rounded-2xl' />
+        <img src={`${apiUrl}${userData.perfil.photo_perfil}`} alt="" className='w-50 border-2 border-gray-500 rounded-full' />
         <div className='flex flex-col items-start'>
           <div className='flex flex-row gap-5'>
             <div className='flex flex-col justify-center items-center'>
