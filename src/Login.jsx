@@ -39,7 +39,7 @@ function Login() {
                     let erros = {}
                     for (const [key, value] of Object.entries(error.response.data)) {
                         console.log(key, value)
-                        if (value.length  > 1) {
+                        if (value.length > 1) {
 
                         }
                         erros[key] = value
@@ -57,23 +57,23 @@ function Login() {
                 localStorage.setItem('auth_token', response.data.token);
                 window.location.href = '/'
             } catch (error) {
-                    setErrorLogin('Usuário ou senha inválidos')
-                }
+                setErrorLogin('Usuário ou senha inválidos')
             }
-
         }
-    
+
+    }
+
 
     return (
         <>
             <Header />
-
-            <div className='flex flex-row justify-center items-center h-screen'>
-                <div className='flex flex-col pt-50 bg-gray-200 p-10 shadow-lg h-full w-full'>
-                    <h1 className='text-6xl font-bold'>Dê um Cliqq e compartilhe história</h1>
+            <div className='flex flex-row not-md:flex-col justify-center items-center h-screen'>
+                <div className='flex flex-col md:pt-50 bg-gray-200 p-10 shadow-lg md:h-full md:w-full'>
+                    <h1 className='md:text-6xl text-3xl font-bold'>Dê um Cliqq e compartilhe história</h1>
 
                 </div>
-                <div className='flex flex-col pt-50 bg-white p-10 shadow-lg h-full w-full'>
+                <div className='flex flex-col md:pt-50 bg-white p-10 shadow-lg h-full w-full not-md:items-center'>
+
                     <TabGroup>
                         <TabList className="flex gap-2 mb-4 ">
                             <Tab
@@ -97,7 +97,7 @@ function Login() {
                                             className='border-2 border-gray-500 rounded-2xl pl-3 w-full'
                                             id='username'
                                         />
-                                        
+
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="password">Senha</label>
@@ -128,10 +128,10 @@ function Login() {
                                             className='border-2 border-gray-500 rounded-2xl pl-3 w-full'
                                             id='username'
                                         />
-                                        {errorsregister.username && 
-                                        errorsregister.username.map((error, index) => (
-                                            <p key={index} className='text-red-600 text-sm'>{error}</p>
-                                        ))}
+                                        {errorsregister.username &&
+                                            errorsregister.username.map((error, index) => (
+                                                <p key={index} className='text-red-600 text-sm'>{error}</p>
+                                            ))}
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="email">E-mail</label>
@@ -143,10 +143,10 @@ function Login() {
                                             className='border-2 border-gray-500 rounded-2xl pl-3 w-full'
                                             id='email'
                                         />
-                                        {errorsregister.email && 
-                                        errorsregister.email.map((error, index) => (
-                                            <p key={index} className='text-red-600 text-sm'>{error}</p>
-                                        ))}
+                                        {errorsregister.email &&
+                                            errorsregister.email.map((error, index) => (
+                                                <p key={index} className='text-red-600 text-sm'>{error}</p>
+                                            ))}
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="password">Senha</label>
@@ -158,10 +158,10 @@ function Login() {
                                             className='border-2 border-gray-500 rounded-2xl pl-3 w-full'
                                             id='password'
                                         />
-                                        {errorsregister.password && 
-                                        errorsregister.password.map((error, index) => (
-                                            <p key={index} className='text-red-600 text-sm'>{error}</p>
-                                        ))}
+                                        {errorsregister.password &&
+                                            errorsregister.password.map((error, index) => (
+                                                <p key={index} className='text-red-600 text-sm'>{error}</p>
+                                            ))}
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="confirmpassword">Confimação de senha</label>
@@ -173,10 +173,10 @@ function Login() {
                                             className='border-2 border-gray-500 rounded-2xl pl-3 w-full'
                                             id='confirmpassword'
                                         />
-                                        {errorsregister.confirm_password && 
-                                        errorsregister.confirm_password.map((error, index) => (
-                                            <p key={index} className='text-red-600 text-sm'>{error}</p>
-                                        ))}
+                                        {errorsregister.confirm_password &&
+                                            errorsregister.confirm_password.map((error, index) => (
+                                                <p key={index} className='text-red-600 text-sm'>{error}</p>
+                                            ))}
                                     </div>
                                     <button className='bg-blue-500 text-white rounded-xl pl-3 w-full h-10 cursor-pointer' type="submit">Entrar</button>
                                 </form>
