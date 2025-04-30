@@ -74,21 +74,22 @@ function Perfil() {
   return (
     <>
       <Header />
-      <div className='flex flex-row justify-start items-start gap-5 pl-10 py-10 border-2 border-gray-200 bg-white'>
-        <img src={`${apiUrl}${userData.perfil.photo_perfil}`} alt="" className='w-50 border-2 border-gray-500 rounded-full' />
-        <div className='flex flex-col items-start'>
+      <div className='w-full flex flex-row justify-start items-start gap-5 p-2 md:pl-10 md:py-10 border-2 border-gray-200 bg-white'>
+        <img src={`${apiUrl}${userData.perfil.photo_perfil}`} alt="" 
+        className='md:w-50 border-2 border-gray-500 rounded-full not-md:w-20 not-md:' />
+        <div className='not-md:text-[rem] flex flex-col items-start'>
           <div className='flex flex-row gap-5'>
             <div className='flex flex-col justify-center items-center'>
               <p className='font-bold'>Fotos</p>
-              <p className='text-2xl font-bold'>{userData.photos.length}</p>
+              <p className='md:text-2xl font-bold'>{userData.photos.length}</p>
             </div>
             <div className='flex flex-col justify-center items-center'>
               <p className='font-bold'>Views</p>
-              <p className='text-2xl font-bold'>{totalViews}</p>
+              <p className='md:text-2xl font-bold'>{totalViews}</p>
             </div>
           </div>
-          <h1 className='text-6xl font-bold'>{userData.username}</h1>
-          <p className='text-2xl'>{userData.perfil.biografia}</p>
+          <h1 className='not-md:text-[1rem] text-6xl font-bold'>{userData.username}</h1>
+          <p className='not-md:text-[1rem] text-2xl'>{userData.perfil.biografia}</p>
         </div>
         {isOwner && (
           <div>
@@ -97,24 +98,24 @@ function Perfil() {
         )}
       </div>
 
-      <div className='grid grid-cols-3 gap-5 p-10'>
+      <div className='grid grid-cols-3 gap-1 md:gap-10 md:p-10 p-2 not-md:text-[.7rem]'>
         {userData.photos
           .slice()
           .sort((a, b) => b.id - a.id)
           .map((item) => (
             <div
               key={item.id}
-              className="bg-gray-200 p-2 post-header overflow-hidden rounded-lg justify-between flex flex-col gap-3"
+              className="bg-gray-200 p-0.5 post-header overflow-hidden rounded-lg justify-between flex flex-col gap-1"
               onClick={() => handlePhotoClick(item.id, item.author)}
             >
               <div className='overflow-hidden rounded-lg'>
                 <img className="w-full aspect-square object-contain" src={`${apiUrl}${item.image}`} alt="Post Image" />
               </div>
-              <div className='flex flex-row gap-2 content-start'>
+              <div className='flex flex-row gap-2 content-start not-md:px-2'>
                 <MdVisibility className="relative translate-y-1" />
                 <p>{item.views}</p>
-                <TbClockHour3 className="relative translate-y-1" />
-                <p>{item.post_hour}</p>
+                <TbClockHour3 className="relative translate-y-1 not-md:hidden" />
+                <p className='not-md:hidden'>{item.post_hour}</p>
               </div>
             </div>
           ))}

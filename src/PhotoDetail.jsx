@@ -121,9 +121,9 @@ function PhotoDetail({ photoId, username }) {
       <MyDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} authToken={authToken} photoId={photoId} />
       <div id='closephoto' className='h-screen w-screen bg-black opacity-80 fixed top-0 left-0 z-0'>
       </div>
-      <div className='fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-10 flex md:grid flex-col-reverse
-                    md:grid-cols-[3fr_2fr] md:grid-rows-1 rounded-lg shadow-lg w-4/5 h-4/5'>
-        <div className='bg-gray-200 overflow-hidden md:rounded-[10px_0_0_10px] rounded-b-lg p-2 h-4/5'>
+      <div className='fixed left-[10vw] top-[20vh] z-10 flex md:grid flex-col-reverse 
+                    md:grid-cols-[3fr_2fr] md:grid-rows-1 rounded-lg shadow-lg w-4/5 not-md:h-fit h-4/5'>
+        <div className='bg-gray-200 overflow-hidden md:rounded-[10px_0_0_10px] rounded-b-lg p-2 md:h-4/5'>
           <img className="overflow-hidden object-contain rounded-lg w-full h-full" src={`${apiUrl}${userData.image}`} alt="Post Image" />
         </div>
         <div className='bg-gray-200 p-2 overflow-hidden md:rounded-[0px_10px_10px_0px] rounded-t-lg w-full flex flex-col gap-2 h-1/5 md:h-4/5'>

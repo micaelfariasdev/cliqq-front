@@ -32,12 +32,12 @@ function Login() {
     return (
         <>
             <Header />
-            <div className='flex flex-row justify-center items-center h-screen'>
-                <div className='flex flex-col pt-50 bg-gray-200 p-10 shadow-lg h-full w-full'>
-                    <h1 className='text-6xl font-bold'>Dê um Cliqq e compartilhe história</h1>
+            <div className='flex flex-row not-md:flex-col justify-center items-center h-screen'>
+                <div className='flex flex-col md:pt-50 bg-gray-200 p-10 shadow-lg md:h-full md:w-full'>
+                    <h1 className='md:text-6xl text-3xl font-bold'>Dê um Cliqq e compartilhe história</h1>
 
                 </div>
-                <div className='flex flex-col pt-50 bg-white p-10 shadow-lg h-full w-full'>
+                <div className='flex flex-col md:pt-50 bg-white p-10 shadow-lg h-full w-full not-md:items-center'>
                     <form onSubmit={handleSubmit} className='w-4/5 flex flex-col gap-3'>
                         <p className='text-4xl font-bold'>Entre</p>
                         <div className='flex flex-col'>
