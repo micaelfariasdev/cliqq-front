@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import axios from "axios";
 import 'react-image-crop/dist/ReactCrop.css';
 import React, { useState, useRef, useEffect } from 'react';
+import { Input, Textarea  } from '@headlessui/react'
 import ReactCrop from 'react-image-crop';
 
 function NewPost() {
@@ -150,7 +151,7 @@ function NewPost() {
                     </label>
                     <input type="file" accept="image/*" id="imageInput" onChange={onSelectFile} className="invisible h-0" />
                     <form onSubmit={handleSubmit} className="mt-6 w-full max-w-md flex flex-col text-black gap-3" encType="multipart/form-data">
-                        <input
+                        <Input
                             type="text"
                             placeholder="Título"
                             value={title}
@@ -158,13 +159,14 @@ function NewPost() {
                             className="bg-gray-400 rounded-xl px-3 py-2 mt-[-20px]"
                             required
                         />
-                        <textarea
+                        <Textarea 
                             placeholder="Descrição"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             className="bg-gray-400  rounded-xl px-3 py-2"
                             required
                         />
+                        
                         <button
                             type="submit"
                             className="bg-blue-500 text-white rounded-xl cursor-pointer py-2 hover:bg-blue-600 transition-all"
