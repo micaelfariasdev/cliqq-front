@@ -2,6 +2,8 @@ import { MdVisibility } from "react-icons/md";
 import { TbClockHour3 } from "react-icons/tb";
 import PhotoDetail from '../PhotoDetail.jsx';
 import { useEffect, useState } from 'react'
+import { FaHeart } from "react-icons/fa";
+
 
 function Main() {
     const [itens, setItens] = useState([])
@@ -19,6 +21,15 @@ function Main() {
         carregarItens()
     }, [])
 
+    useEffect(() => {if (!showDetail ) {
+        async function carregarItens() {
+            const resposta = await fetch(`${apiUrl}api/photos/`)
+            const dados = await resposta.json()
+            setItens(dados)
+        }
+        carregarItens()}
+    }, [showDetail])
+
     const handlePhotoClick = (id, username) => {
         setPhotoId(id);
         setUsername(username);
@@ -29,6 +40,7 @@ function Main() {
         const handleClick = (e) => {
             if (e.target.id === 'closephoto' || e.target.id === 'close') {
                 setShowDetail(false);
+                carregarItens()
             }
         };
 
@@ -37,7 +49,7 @@ function Main() {
         return () => {
             document.removeEventListener('click', handleClick);
         };
-    }, []);
+    }, [showDetail]);
 
 
 
@@ -66,6 +78,9 @@ function Main() {
                                     </div>
                                 </a>
                                 <div className="flex flex-row gap-2 mt-2 text-gray-500">
+                                    <FaHeart className={`relative translate-y-1 `}
+                                                      onClick={() => handliked()} />
+                                                    <p>{item.like.length}</p>
                                     <MdVisibility className="relative translate-y-1" />
                                     <p>{item.views}</p>
                                     <TbClockHour3 className="relative translate-y-1" />
