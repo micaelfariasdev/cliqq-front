@@ -120,11 +120,12 @@ function Perfil() {
   const totalViews = userData.photos?.reduce((acc, photo) => acc + photo.views, 0) || 0
   const totalCurtidas = userData.photos?.reduce((acc, photo) => acc + photo.like.length, 0) || 0
   const isOwner = myUsername === profileusername
+
   return (
     <>
       <Header />
       <div className='w-full grid not-md:grid-cols-[1.5fr_3fr_1fr] grid-cols-[auto_3fr_1fr] justify-start not-md:gap-2 gap-5 p-2 md:pl-10 md:py-10 border-2 border-gray-200 bg-white'>
-        <div className='flex flex-row gap-2 col-span-2 items-center'>
+        <div className={`flex flex-row gap-2 col-span-2 items-center`}>
           <h1 className='not-md:text-[1.5rem] text-6xl font-bold'>{userData.username}</h1>
           <SlDiamond className={`${isVip ? '' : 'hidden'} relative translate-y-1 md:translate-y-1.5 not-md:text-[1rem] text-4xl text-cyan-500`} />
         </div>
@@ -143,23 +144,49 @@ function Perfil() {
               >
                 <MenuItem>
                   <button className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-black/10">
-                    Edit
+                    Editar
                   </button>
                 </MenuItem>
                 <MenuItem>
                   <button className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-black/10">
-                    Duplicate
+                    Compartilhar
                   </button>
                 </MenuItem>
                 <div className="my-1 h-px bg-black/5" />
-                <MenuItem>
-                  <button className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-black/10">
-                    Archive
+                                <MenuItem>
+                  <button className="bg-red-500/50 group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-black/10">
+                    Excluir
                   </button>
                 </MenuItem>
+              </MenuItems>
+            </Menu>
+
+          </div>
+        )}
+        {!isOwner && (
+          <div className='justify-self-end '>
+            <Menu>
+              <MenuButton 
+              className="inline-flex items-center gap-2 rounded-md bg-gray-100 px-3 py-1.5 md:text-2xl font-semibold shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline-gray-300 data-hover:bg-gray-300 data-open:bg-gray-200">
+                <IoSettings className='text-gray-400' />
+                <FaChevronDown className="size-4 text-gray-400" />
+              </MenuButton>
+              <MenuItems
+                transition
+                anchor="bottom end"
+                className={'bg-gray-200 p-1 rounded-xl mt-1 md:w-50 origin-top transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0'}
+              >
                 <MenuItem>
                   <button className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-black/10">
-                    Delete
+                    Compartilhar
+                  </button>
+                </MenuItem>
+                
+                <div className="my-1 h-px bg-black/5" />
+                
+                <MenuItem>
+                  <button className="bg-red-500/50 group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-black/10">
+                    Denunciar
                   </button>
                 </MenuItem>
               </MenuItems>
